@@ -4,6 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/artif/AndroidStudioProjects/PDFReaderCR424B/app/src/main/res/drawable/pdficon.xml" value="0.1" />
+        <entry key="..\:/Users/artif/Desktop/PDFReader/app/src/main/res/layout/activity_main.xml" value="0.14" />
+        <entry key="..\:/Users/artif/Desktop/PDFReader/app/src/main/res/layout/activity_pdf.xml" value="0.1" />
+        <entry key="..\:/Users/artif/Desktop/PDFReader/app/src/main/res/layout/activity_search_result.xml" value="0.1" />
+        <entry key="..\:/Users/artif/Desktop/PDFReader/app/src/main/res/layout/fragment_empty.xml" value="0.18" />
+        <entry key="..\:/Users/artif/Desktop/PDFReader/app/src/main/res/layout/fragment_empty_view.xml" value="0.1" />
+        <entry key="..\:/Users/artif/Desktop/PDFReader/app/src/main/res/layout/tool_bar.xml" value="0.1" />
+        <entry key="..\:/Users/artif/Desktop/PDFReader/app/src/main/res/menu/drawable/ic_light_toc.xml" value="0.1" />
+        <entry key="..\:/Users/artif/Desktop/PDFReader/app/src/main/res/menu/drawable/ic_search.xml" value="0.1" />
+        <entry key="..\:/Users/artif/Desktop/PDFReader/app/src/main/res/menu/main_menu.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
