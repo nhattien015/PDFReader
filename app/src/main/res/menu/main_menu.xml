@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item android:id="@+id/action_search"
+        android:title="Search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="collapseActionView|ifRoom"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
+    <item android:id="@+id/open_specific_file_option"
+        android:title="Open specific file" app:showAsAction="never" />
+    <item android:id="@+id/sort_option"
+        android:title="Sort by" app:showAsAction="never">
+        <menu>
+            <group android:id="@+id/sort_by_group"
+                android:checkableBehavior="single">
+                <item android:id="@+id/sort_by_name_option"
+                    android:title="Name"/>
+                <item android:id="@+id/menu_sort_by_modified_time_option"
+                    android:title="Modified time"/>
+                <item android:id="@+id/menu_sort_by_file_size_option"
+                    android:title="Size"/>
+            </group>
+        </menu>
+    </item>
+</menu>
