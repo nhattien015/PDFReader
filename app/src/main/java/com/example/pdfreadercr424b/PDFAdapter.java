@@ -26,6 +26,8 @@ import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+
 public class PDFAdapter extends ArrayAdapter<File> {
     Context context;
     ViewHolder viewHolder;
@@ -76,6 +78,8 @@ public class PDFAdapter extends ArrayAdapter<File> {
             viewHolder = new ViewHolder();
             viewHolder.filename = (TextView) view.findViewById(R.id.filename);
             viewHolder.image = (ImageView) view.findViewById(R.id.image);
+            viewHolder.filesize = (TextView) view.findViewById(R.id.file_size);
+            viewHolder.modifiedLastest = (TextView) view.findViewById(R.id.modify_time);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
@@ -85,6 +89,9 @@ public class PDFAdapter extends ArrayAdapter<File> {
         viewHolder.filename.setText(pdfList.get(position).getName());
 
         viewHolder.image.setImageBitmap(this.getThumbnailPdfBitmap(pdfList.get(position)));
+
+        viewHolder.filesize.setText(String.format("%,dKB", pdfList.get(position).length() / 1024));
+        viewHolder.modifiedLastest.setText(new Date(pdfList.get(position).lastModified()).toLocaleString());
         return view;
 
     }
@@ -93,6 +100,8 @@ public class PDFAdapter extends ArrayAdapter<File> {
 
         TextView filename;
         ImageView image;
+        TextView filesize;
+        TextView modifiedLastest;
     }
 
 }

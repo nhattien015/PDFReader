@@ -15,6 +15,7 @@ import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.shockwave.pdfium.PdfDocument;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PdfActivity extends AppCompatActivity implements OnPageChangeListener, OnLoadCompleteListener {
@@ -24,7 +25,7 @@ public class PdfActivity extends AppCompatActivity implements OnPageChangeListen
     String pdfFileName;
     String TAG="PdfActivity";
     int position=-1;
-
+    private static PdfActivity instance;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,16 +36,26 @@ public class PdfActivity extends AppCompatActivity implements OnPageChangeListen
     private void init(){
         pdfView = (PDFView)findViewById(R.id.pdfView);
         position = getIntent().getIntExtra("position",-1);
-        displayFromSdcard();
+        String filePath = getIntent().getStringExtra("document_file_path");
+
+        if(this.position >= 0){
+            displayFromSdcard();
+        }
+        else if(filePath != null){
+            File documentFile = new File(filePath);
+            Log.i("Kei", filePath);
+            Log.i("Kei", String.valueOf(documentFile));
+            loadFromFile(documentFile);
+        }
     }
 
-    private void displayFromSdcard() {
-        pdfFileName = MainActivity.fileList.get(position).getName();
-        File pdfFile = MainActivity.fileList.get(position);
+
+    private void loadFromFile(File file){
+        pdfFileName = file.getName();
         try{
-            if(pdfFile.exists()){
-                pdfView.fromFile(pdfFile)
-                        .defaultPage(pageNumber)
+            if(file.exists()){
+                pdfView.fromFile(file)
+                        .defaultPage(0)
                         .enableSwipe(true)
                         .swipeHorizontal(false)
                         .onPageChange(this)
@@ -56,8 +67,13 @@ public class PdfActivity extends AppCompatActivity implements OnPageChangeListen
         }catch(Exception err){
             Toast toast = Toast.makeText(PdfActivity.this, err.getMessage(), Toast.LENGTH_SHORT);
             toast.show();
-
         }
+    }
+    private void displayFromSdcard() {
+        pdfFileName = new ArrayList<>(MainActivity.fileList).get(position).getName();
+        File pdfFile = new ArrayList<>(MainActivity.fileList).get(position);
+        Log.i("Hello World", pdfFile.getPath());
+        loadFromFile(pdfFile);
     }
     @Override
     public void onPageChanged(int page, int pageCount) {
@@ -81,5 +97,13 @@ public class PdfActivity extends AppCompatActivity implements OnPageChangeListen
                 printBookmarksTree(b.getChildren(), sep + "-");
             }
         }
+    }
+
+
+    static public PdfActivity getInstance(){
+        if(PdfActivity.instance == null){
+            PdfActivity.instance = new PdfActivity();
+        }
+        return PdfActivity.instance;
     }
 }
